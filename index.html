@@ -142,6 +142,15 @@ section{
     display:none;
     z-index:3000;
 }
+
+/* FOOTER */
+footer{
+    background:#f4f7f4;
+    border-top:1px solid #dcdcdc;
+    padding:30px 40px;
+    font-size:13px;
+    color:#555;
+}
 </style>
 </head>
 
@@ -154,6 +163,7 @@ section{
 
 <div class="page">
 
+<!-- HERO -->
 <section class="hero">
     <div>
         <h1>Smart Crop Advisory System</h1>
@@ -161,6 +171,7 @@ section{
     </div>
 </section>
 
+<!-- SERVICES -->
 <section>
 <h2>Smart Farming Services</h2>
 
@@ -181,7 +192,6 @@ section{
         <p>Weather Advisory</p>
     </div>
 
-    <!-- ✅ SEEDS PAGE CONNECTED HERE -->
     <div class="card" onclick="access('seeds')">
         <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae">
         <p>Buy Crop Seeds</p>
@@ -190,7 +200,60 @@ section{
 </div>
 </section>
 
+<!-- ABOUT SECTION -->
+<section style="background:#ffffff; border-top:1px solid #e0e0e0;">
+    <h2>About Smart Crop Advisory System</h2>
+    <p style="max-width:900px; margin:20px auto; color:#555; line-height:1.6;">
+        Smart Crop Advisory System is a technology-driven digital platform designed
+        to support farmers with timely, accurate, and practical agricultural insights.
+        The system helps farmers improve productivity, reduce crop losses, and
+        adopt sustainable farming practices.
+    </p>
+    <p style="max-width:900px; margin:0 auto; color:#555; line-height:1.6;">
+        By combining data analysis and intelligent advisory methods, the platform
+        enables better decision-making while keeping the user experience simple
+        and accessible.
+    </p>
+</section>
+
 </div>
+
+<!-- FOOTER -->
+<footer>
+    <div style="
+        max-width:1100px;
+        margin:auto;
+        display:flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        gap:20px;
+    ">
+        <div>
+            <strong>Smart Crop Advisory System</strong><br>
+            AI-powered digital agriculture platform
+        </div>
+
+        <div>
+            <strong>Core Solutions</strong><br>
+            Crop Advisory<br>
+            Soil Health<br>
+            Weather Advisory<br>
+            Seed Marketplace
+        </div>
+
+        <div>
+            <strong>Technology</strong><br>
+            Data Analytics<br>
+            Intelligent Advisory<br>
+            Decision Support
+        </div>
+
+        <div>
+            <strong>© 2026</strong><br>
+            All rights reserved
+        </div>
+    </div>
+</footer>
 
 <!-- LOGIN MODAL -->
 <div class="modal" id="loginModal">
@@ -205,7 +268,6 @@ section{
 <div class="message" id="message">🔒 Please login first</div>
 
 <script>
-/* SINGLE LOGIN (frontend only) */
 let isLoggedIn = sessionStorage.getItem("loggedIn") === "true";
 
 if(isLoggedIn){
@@ -233,7 +295,7 @@ function access(page){
     if(page==="crop") location.href="cropadvisory.html";
     if(page==="soil") location.href="soilhealth.html";
     if(page==="weather") location.href="weather.html";
-    if(page==="seeds") location.href="seeds.html"; // ✅ CONNECTED
+    if(page==="seeds") location.href="seeds.html";
 }
 
 function showMessage(){
@@ -245,3 +307,4 @@ function showMessage(){
 
 </body>
 </html>
+
