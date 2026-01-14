@@ -6,287 +6,156 @@
     <title>AgroSeed - Premium Crop Seeds</title>
     <style>
         :root {
-            --primary-gold: #FFD700;
-            --leaf-green: #4CAF50;
-            --sky-blue: #87CEEB;
-            --soil-brown: #A0522D;
-            --text-color: #000000;
-            --bright-orange: #FF5722;
-            --soft-purple: #9C27B0;
+            --primary-gold: #FFD700; --leaf-green: #4CAF50; --sky-blue: #87CEEB;
+            --soil-brown: #A0522D; --text-color: #000000;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-            color: var(--text-color);
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f9f9f9; color: var(--text-color); }
 
-        /* Top Navigation */
+        /* Navbar */
         .navbar {
-            background-color: var(--primary-gold);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid var(--soil-brown);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: var(--primary-gold); padding: 15px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid var(--soil-brown); position: sticky; top: 0; z-index: 1000;
         }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: bold; font-size: 1.1rem; border: 2px solid var(--text-color); padding: 5px 15px; border-radius: 5px; background: white; cursor: pointer; }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-            border: 2px solid var(--text-color);
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
-            background: white;
-        }
-
-        .nav-links a:hover {
-            background-color: #eee;
-        }
-
+        /* Header */
         header {
-            text-align: center;
-            padding: 40px;
-            background-color: var(--leaf-green);
-            color: var(--text-color);
-            border-bottom: 3px solid var(--text-color);
+            position: relative; text-align: center; padding: 60px 20px;
+            background-color: var(--soil-brown); border-bottom: 3px solid var(--text-color);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 70px;
         }
+        header h1, header p { margin: 5px 0; color: var(--text-color); position: relative; z-index: 1; }
+        .header-logo { position: absolute; top: 50%; transform: translateY(-50%); width: 250px; height: auto; }
+        .logo-left { left: 30px; } .logo-right { right: 30px; }
+
+        /* Search Bar */
+        .search-container { text-align: center; padding: 20px; background: #fff; border-bottom: 2px solid black; }
+        #cropSearch { width: 60%; padding: 12px 20px; font-size: 1.1rem; border: 3px solid var(--soil-brown); border-radius: 50px; outline: none; box-shadow: 4px 4px 0px var(--primary-gold); }
 
         /* Product Grid */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 0 20px;
-        }
+        .container { max-width: 1200px; margin: 30px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 0 20px; }
+        .seed-card { background: white; border: 3px solid var(--text-color); border-radius: 15px; overflow: hidden; text-align: center; box-shadow: 8px 8px 0px var(--soil-brown); display: flex; flex-direction: column; transition: 0.2s; }
+        .seed-card:hover { transform: translateY(-5px); }
+        .seed-image { height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 3px solid var(--text-color); }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
+        .card-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .price { font-size: 1.5rem; color: var(--soil-brown); font-weight: 900; }
+        .buy-btn { background-color: var(--primary-gold); border: 2px solid var(--text-color); padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; }
 
-        .seed-card {
-            background: white;
-            border: 3px solid var(--text-color);
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.2s;
-            box-shadow: 8px 8px 0px var(--soil-brown);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .seed-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .seed-image {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-bottom: 3px solid var(--text-color);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            color: var(--soil-brown);
-            font-weight: 900;
-            margin: 10px 0;
-        }
-
-        .buy-btn {
-            background-color: var(--primary-gold);
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
-            padding: 12px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            text-transform: uppercase;
-            transition: 0.2s;
-        }
-
-        .buy-btn:hover {
-            background-color: var(--leaf-green);
-            box-shadow: 0px 4px 0px var(--text-color);
-        }
+        /* Modal */
+        #qty-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--sky-blue); padding: 30px; border: 4px solid black; border-radius: 20px; z-index: 2000; text-align: center; box-shadow: 10px 10px 0px black; }
+        .blur-bg { filter: blur(8px); pointer-events: none; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-links">
-            <a href="#">🛒 Your Cart (0)</a>
-            <a href="#">👤 Profile</a>
-        </div>
+        <div class="nav-links"><a href="cart_0.html">🛒 Your Cart</a></div>
         <div style="font-weight: 900; font-size: 1.5rem;">AGRO-SEED CO.</div>
     </nav>
 
-    <header>
-        <h1>High-Yield Crop Seeds</h1>
-        <p>Premium Quality Seeds for a Bountiful Harvest</p>
-    </header>
+    <div id="page-content">
+        <header>
+            <img src="https://i.ibb.co/VWhjT96v/log-0.png" class="header-logo logo-left">
+            <h1>High-Yield Crop Seeds</h1>
+            <p>Premium Quality Seeds for a Bountiful Harvest</p>
+            <img src="https://i.ibb.co/VWhjT96v/log-0.png" class="header-logo logo-right">
+        </header>
 
-    <div class="container">
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FFEB3B;">
-                <img src="https://5.imimg.com/data5/SELLER/Default/2023/6/313683367/DD/CN/RK/157998733/golden-wheat-grain.webp" alt="Golden Wheat" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Golden Wheat</h3>
-                <p>Organic, high-protein variety.</p>
-                <p class="price">₹25.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
+        <div class="search-container">
+            <input type="text" id="cropSearch" placeholder="🔍 Search for wheat, rice, jowar..." onkeyup="filterCrops()">
         </div>
 
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #CDDC39;">
-                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR1ob4Be896oCUCj2mUl2MS6lbJXyxcO8V-517SnnA0s2tTSki4" alt="Sweet Corn" class="product-img">
+        <div class="container" id="cropGrid">
+            <div class="seed-card" data-name="golden wheat">
+                <div class="seed-image" style="background-color: #FFEB3B;"><img src="https://5.imimg.com/data5/SELLER/Default/2023/6/313683367/DD/CN/RK/157998733/golden-wheat-grain.webp" class="product-img"></div>
+                <div class="card-content"><h3>Golden Wheat</h3><p class="price">₹25.00 / kg</p><button class="buy-btn" onclick="askQuantity('Golden Wheat', 25, 'https://5.imimg.com/data5/SELLER/Default/2023/6/313683367/DD/CN/RK/157998733/golden-wheat-grain.webp')">Add to Cart</button></div>
             </div>
-            <div class="card-content">
-                <h3>Sweet Corn Hybrid</h3>
-                <p>Fast-growing, pest-resistant.</p>
-                <p class="price">₹18.50 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
+            <div class="seed-card" data-name="sweet corn hybrid">
+                <div class="seed-image" style="background-color: #CDDC39;"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR1ob4Be896oCUCj2mUl2MS6lbJXyxcO8V-517SnnA0s2tTSki4" class="product-img"></div>
+                <div class="card-content"><h3>Sweet Corn Hybrid</h3><p class="price">₹18.50 / kg</p><button class="buy-btn" onclick="askQuantity('Sweet Corn Hybrid', 18.50, 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR1ob4Be896oCUCj2mUl2MS6lbJXyxcO8V-517SnnA0s2tTSki4')">Add to Cart</button></div>
             </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FF9800;">
-                <img src="https://img.freepik.com/free-photo/beautiful-sunflowers-outdoors-still-life_23-2150152757.jpg?semt=ais_hybrid&w=740&q=80" alt="Giant Sunflower" class="product-img">
+            <div class="seed-card" data-name="giant sunflower">
+                <div class="seed-image" style="background-color: #FF9800;"><img src="https://img.freepik.com/free-photo/beautiful-sunflowers-outdoors-still-life_23-2150152757.jpg?semt=ais_hybrid&w=740&q=80" class="product-img"></div>
+                <div class="card-content"><h3>Giant Sunflower</h3><p class="price">₹30.00 / kg</p><button class="buy-btn" onclick="askQuantity('Giant Sunflower', 30, 'https://img.freepik.com/free-photo/beautiful-sunflowers-outdoors-still-life_23-2150152757.jpg?semt=ais_hybrid&w=740&q=80')">Add to Cart</button></div>
             </div>
-            <div class="card-content">
-                <h3>Giant Sunflower</h3>
-                <p>Best for premium oil extraction.</p>
-                <p class="price">₹30.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
+            <div class="seed-card" data-name="ruby tomato">
+                <div class="seed-image" style="background-color: #FF5722;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa6G2sFzRt2c_4DljZUMKfK8sMOFV-E8F_A&s" class="product-img"></div>
+                <div class="card-content"><h3>Ruby Tomato</h3><p class="price">₹12.99 / packet</p><button class="buy-btn" onclick="askQuantity('Ruby Tomato', 12.99, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa6G2sFzRt2c_4DljZUMKfK8sMOFV-E8F_A&s')">Add to Cart</button></div>
             </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FF5722;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa6G2sFzRt2c_4DljZUMKfK8sMOFV-E8F_A&s" alt="Tomato" class="product-img">
+            <div class="seed-card" data-name="soybean">
+                <div class="seed-image" style="background-color: #E6EE9C;"><img src="https://goqii.com/blog/wp-content/uploads/shutterstock_1467898517-1024x682.jpg" class="product-img"></div>
+                <div class="card-content"><h3>Soybean</h3><p class="price">₹45.00 / kg</p><button class="buy-btn" onclick="askQuantity('Soybean', 45, 'https://goqii.com/blog/wp-content/uploads/shutterstock_1467898517-1024x682.jpg')">Add to Cart</button></div>
             </div>
-            <div class="card-content">
-                <h3>Ruby Tomato</h3>
-                <p>Perfect for greenhouse farming.</p>
-                <p class="price">₹12.99 / packet</p>
-                <button class="buy-btn">Add to Cart</button>
+            <div class="seed-card" data-name="green spinach">
+                <div class="seed-image" style="background-color: #8BC34A;"><img src="https://static.toiimg.com/thumb/msid-126401396,width-1070,height-580,imgsize-342746,resizemode-75,overlay-toi_sw,pt-32,y_pad-500/photo.jpg" class="product-img"></div>
+                <div class="card-content"><h3>Green Spinach</h3><p class="price">₹10.00 / packet</p><button class="buy-btn" onclick="askQuantity('Green Spinach', 10, 'https://static.toiimg.com/thumb/msid-126401396,width-1070,height-580,imgsize-342746,resizemode-75,overlay-toi_sw,pt-32,y_pad-500/photo.jpg')">Add to Cart</button></div>
             </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #E6EE9C;">
-                <img src="https://goqii.com/blog/wp-content/uploads/shutterstock_1467898517-1024x682.jpg" alt="Soybean" class="product-img">
+            <div class="seed-card" data-name="premium jowar">
+                <div class="seed-image" style="background-color: #FFF59D;"><img src="https://www.jiomart.com/images/product/original/rvjkpxg2uu/farmbean-whole-yellow-jowar-grains-7-kg-sorghum-jonna-for-weight-loss-native-low-gi-millet-rice-high-protein-100-more-fibre-than-rice-7000g-product-images-orvjkpxg2uu-p594632753-3-202211151935.jpg?im=Resize=(420,420)" class="product-img"></div>
+                <div class="card-content"><h3>Premium Jowar</h3><p class="price">₹35.00 / kg</p><button class="buy-btn" onclick="askQuantity('Premium Jowar', 35, 'https://www.jiomart.com/images/product/original/rvjkpxg2uu/farmbean-whole-yellow-jowar-grains-7-kg-sorghum-jonna-for-weight-loss-native-low-gi-millet-rice-high-protein-100-more-fibre-than-rice-7000g-product-images-orvjkpxg2uu-p594632753-3-202211151935.jpg?im=Resize=(420,420)')">Add to Cart</button></div>
             </div>
-            <div class="card-content">
-                <h3>Soybean</h3>
-                <p>High protein content for industrial use.</p>
-                <p class="price">₹45.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
+            <div class="seed-card" data-name="hybrid bajra">
+                <div class="seed-image" style="background-color: #BCAAA4;"><img src="https://m.media-amazon.com/images/I/51sqsvZ9pfL._AC_UF1000,1000_QL80_.jpg" class="product-img"></div>
+                <div class="card-content"><h3>Hybrid Bajra</h3><p class="price">₹28.00 / kg</p><button class="buy-btn" onclick="askQuantity('Hybrid Bajra', 28, 'https://m.media-amazon.com/images/I/51sqsvZ9pfL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button></div>
             </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #8BC34A;">
-                <img src="https://static.toiimg.com/thumb/msid-126401396,width-1070,height-580,imgsize-342746,resizemode-75,overlay-toi_sw,pt-32,y_pad-500/photo.jpg" alt="Spinach" class="product-img">
+            <div class="seed-card" data-name="red gram tur">
+                <div class="seed-image" style="background-color: #FFAB91;"><img src="https://www.worldmartexport.com/media/seller/products/Red_Gram_APNc0dz.jpeg" class="product-img"></div>
+                <div class="card-content"><h3>Red Gram (Tur)</h3><p class="price">₹65.00 / kg</p><button class="buy-btn" onclick="askQuantity('Red Gram (Tur)', 65, 'https://www.worldmartexport.com/media/seller/products/Red_Gram_APNc0dz.jpeg')">Add to Cart</button></div>
             </div>
-            <div class="card-content">
-                <h3>Green Spinach</h3>
-                <p>Rich in iron and fast harvesting.</p>
-                <p class="price">₹10.00 / packet</p>
-                <button class="buy-btn">Add to Cart</button>
+            <div class="seed-card" data-name="gram chickpeas">
+                <div class="seed-image" style="background-color: #FFE082;"><img src="https://4.imimg.com/data4/IG/II/MY-27845820/bengal-gram-whole-500x500.jpg" class="product-img"></div>
+                <div class="card-content"><h3>Gram (Chickpeas)</h3><p class="price">₹55.00 / kg</p><button class="buy-btn" onclick="askQuantity('Gram (Chickpeas)', 55, 'https://4.imimg.com/data4/IG/II/MY-27845820/bengal-gram-whole-500x500.jpg')">Add to Cart</button></div>
+            </div>
+            <div class="seed-card" data-name="basmati rice">
+                <div class="seed-image" style="background-color: #E0F2F1;"><img src="https://5.imimg.com/data5/PJ/FW/MY-27318931/fresh-basmati-rice-500x500.jpeg" class="product-img"></div>
+                <div class="card-content"><h3>Basmati Rice</h3><p class="price">₹80.00 / kg</p><button class="buy-btn" onclick="askQuantity('Basmati Rice', 80, 'https://5.imimg.com/data5/PJ/FW/MY-27318931/fresh-basmati-rice-500x500.jpeg')">Add to Cart</button></div>
             </div>
         </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FFF59D;">
-                <img src="https://www.jiomart.com/images/product/original/rvjkpxg2uu/farmbean-whole-yellow-jowar-grains-7-kg-sorghum-jonna-for-weight-loss-native-low-gi-millet-rice-high-protein-100-more-fibre-than-rice-7000g-product-images-orvjkpxg2uu-p594632753-3-202211151935.jpg?im=Resize=(420,420)" alt="Jowar" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Premium Jowar</h3>
-                <p>Drought-resistant Sorghum seeds.</p>
-                <p class="price">₹35.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #BCAAA4;">
-                <img src="https://m.media-amazon.com/images/I/51sqsvZ9pfL._AC_UF1000,1000_QL80_.jpg" alt="Bajra" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Hybrid Bajra</h3>
-                <p>Nutritious Pearl Millet seeds.</p>
-                <p class="price">₹28.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FFAB91;">
-                <img src="https://www.worldmartexport.com/media/seller/products/Red_Gram_APNc0dz.jpeg" alt="Red Gram" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Red Gram (Tur)</h3>
-                <p>Superior quality pulse seeds.</p>
-                <p class="price">₹65.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #FFE082;">
-                <img src="https://4.imimg.com/data4/IG/II/MY-27845820/bengal-gram-whole-500x500.jpg" alt="Gram" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Gram (Chickpeas)</h3>
-                <p>Bold seeds for higher yield.</p>
-                <p class="price">₹55.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="seed-card">
-            <div class="seed-image" style="background-color: #E0F2F1;">
-                <img src="https://5.imimg.com/data5/PJ/FW/MY-27318931/fresh-basmati-rice-500x500.jpeg" alt="Rice" class="product-img">
-            </div>
-            <div class="card-content">
-                <h3>Basmati Rice</h3>
-                <p>Long-grain, aromatic variety.</p>
-                <p class="price">₹80.00 / kg</p>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
-        </div>
-
     </div>
 
+    <div id="qty-modal">
+        <h2 id="modal-name"></h2>
+        <p>How many Kilos (kg) do you need?</p>
+        <input type="number" id="qty-val" value="1" min="1">
+        <br><br>
+        <button class="buy-btn" onclick="confirmAddToCart()">Confirm & View Cart</button>
+        <button class="buy-btn" style="background:white" onclick="closeModal()">Cancel</button>
+    </div>
+
+    <script>
+        let tempItem = null;
+
+        function filterCrops() {
+            let input = document.getElementById('cropSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('seed-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                cards[i].style.display = name.includes(input) ? "flex" : "none";
+            }
+        }
+
+        function askQuantity(name, price, img) {
+            tempItem = { name, price, img };
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('qty-modal').style.display = 'block';
+            document.getElementById('page-content').classList.add('blur-bg');
+        }
+
+        function closeModal() {
+            document.getElementById('qty-modal').style.display = 'none';
+            document.getElementById('page-content').classList.remove('blur-bg');
+        }
+
+        function confirmAddToCart() {
+            let q = document.getElementById('qty-val').value;
+            let cart = JSON.parse(localStorage.getItem('agroCart')) || [];
+            cart.push({ ...tempItem, qty: parseInt(q) });
+            localStorage.setItem('agroCart', JSON.stringify(cart));
+            window.location.href = "cart_0.html";
+        }
+    </script>
 </body>
 </html>
