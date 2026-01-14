@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Crop Advisory System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:70px;
+    background:#1b5e20;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    z-index:1000;
+}
+
+header button{
+    padding:8px 18px;
+    background:#4CAF50;
+    border:none;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* PAGE */
+.page{ padding-top:70px; }
+
+/* HERO */
+.hero{
+    height:80vh;
+    background:url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6")
+    center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+.hero div{
+    background:rgba(0,0,0,.45);
+    padding:40px;
+    border-radius:14px;
+}
+
+/* SECTION */
+section{
+    padding:60px;
+    text-align:center;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* CARD */
+.card{
+    background:#f4f7f4;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    cursor:pointer;
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-5px);
+}
+.card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+}
+.card p{
+    padding:16px;
+    font-weight:bold;
+    color:#2e7d32;
+}
+
+/* LOGIN MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+.modal.active{ display:flex; }
+
+.login-box{
+    background:white;
+    padding:30px;
+    width:340px;
+    border-radius:14px;
+    text-align:center;
+}
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+.login-box button{
+    width:100%;
+    padding:12px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* MESSAGE */
+.message{
+    position:fixed;
+    top:90px;
+    right:40px;
+    background:#ffebee;
+    color:#c62828;
+    padding:14px 18px;
+    border-radius:8px;
+    display:none;
+    z-index:3000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>🌱 Smart Crop Advisory</h2>
+    <button id="loginBtn" onclick="openLogin()">Login</button>
+</header>
+
+<div class="page">
+
+<section class="hero">
+    <div>
+        <h1>Smart Crop Advisory System</h1>
+        <p>AI-powered solutions for modern farming</p>
+    </div>
+</section>
+
+<section>
+<h2>Smart Farming Services</h2>
+
+<div class="grid">
+
+    <div class="card" onclick="access('crop')">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+        <p>Crop Advisory</p>
+    </div>
+
+    <div class="card" onclick="access('soil')">
+        <img src="https://images.unsplash.com/photo-1598514983318-2f64f8f4796c">
+        <p>Soil Health</p>
+    </div>
+
+    <div class="card" onclick="access('weather')">
+        <img src="https://images.unsplash.com/photo-1501630834273-4b5604d2ee31">
+        <p>Weather Advisory</p>
+    </div>
+
+    <!-- ✅ SEEDS PAGE CONNECTED HERE -->
+    <div class="card" onclick="access('seeds')">
+        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae">
+        <p>Buy Crop Seeds</p>
+    </div>
+
+</div>
+</section>
+
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+<div class="login-box">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+</div>
+
+<div class="message" id="message">🔒 Please login first</div>
+
+<script>
+/* SINGLE LOGIN (frontend only) */
+let isLoggedIn = sessionStorage.getItem("loggedIn") === "true";
+
+if(isLoggedIn){
+    document.getElementById("loginBtn").style.display = "none";
+}
+
+function openLogin(){
+    document.getElementById("loginModal").classList.add("active");
+}
+
+function login(){
+    sessionStorage.setItem("loggedIn","true");
+    isLoggedIn = true;
+    document.getElementById("loginModal").classList.remove("active");
+    document.getElementById("loginBtn").style.display = "none";
+}
+
+function access(page){
+    if(!isLoggedIn){
+        showMessage();
+        openLogin();
+        return;
+    }
+
+    if(page==="crop") location.href="cropadvisory.html";
+    if(page==="soil") location.href="soilhealth.html";
+    if(page==="weather") location.href="weather.html";
+    if(page==="seeds") location.href="seeds.html"; // ✅ CONNECTED
+}
+
+function showMessage(){
+    const msg = document.getElementById("message");
+    msg.style.display = "block";
+    setTimeout(()=>msg.style.display="none",2000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Soil Health</title>
+
+<style>
+body{font-family:Arial;background:#f2f6f2;margin:0}
+header{background:#1b5e20;color:white;padding:20px}
+.main{max-width:1000px;margin:30px auto;background:white;
+padding:30px;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,.12)}
+video,canvas{width:100%;max-width:420px;border-radius:12px;border:2px solid #2e7d32}
+button{padding:12px 20px;background:#4CAF50;color:white;border:none;border-radius:6px}
+.report{margin-top:20px;background:#e8f5e9;padding:20px;border-radius:12px;display:none}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🌱 Soil Health Analysis</h2>
+<a href="index.html" style="color:white">⬅ Back</a>
+</header>
+
+<div class="main">
+<h3>Live Soil Image Capture</h3>
+
+<video id="video" autoplay></video><br><br>
+<button onclick="startCamera()">Open Camera</button>
+<button onclick="capture()">Capture</button>
+
+<canvas id="canvas"></canvas>
+
+<div class="report" id="report">
+<h3>Soil Health Report</h3>
+<p>✔ Soil Type: Loamy</p>
+<p>✔ Moisture: Moderate</p>
+<p>✔ Nitrogen: Medium</p>
+<p>✔ Recommendation: Wheat, Maize</p>
+</div>
+</div>
+
+<script>
+let video=document.getElementById("video");
+let canvas=document.getElementById("canvas");
+let ctx=canvas.getContext("2d");
+
+function startCamera(){
+navigator.mediaDevices.getUserMedia({video:true})
+.then(s=>video.srcObject=s)
+.catch(()=>alert("Camera access denied"));
+}
+
+function capture(){
+canvas.width=video.videoWidth;
+canvas.height=video.videoHeight;
+ctx.drawImage(video,0,0);
+document.getElementById("report").style.display="block";
+}
+</script>
+
+</body>
+</html>

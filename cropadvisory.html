@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crop Adviser | Smart Crop Advisory</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f2f6f2;
+}
+
+/* HEADER */
+header{
+    background:#1b5e20;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* MAIN */
+.main{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h1{ color:#2e7d32; }
+.title p{ color:#555; }
+
+/* SINGLE BOX */
+.box{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 18px 35px rgba(0,0,0,0.12);
+}
+
+/* STEP INDICATOR */
+.steps{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.step{
+    flex:1;
+    text-align:center;
+    font-size:13px;
+    color:#999;
+}
+
+.step.active{
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+/* STEP CONTENT */
+.step-content{
+    display:none;
+}
+
+.step-content.active{
+    display:block;
+}
+
+.step-content h3{
+    color:#2e7d32;
+    margin-bottom:8px;
+}
+
+.step-content p{
+    font-size:14px;
+    color:#555;
+    margin-bottom:15px;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:6px;
+    background:#4CAF50;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+}
+
+button.secondary{
+    background:#9e9e9e;
+}
+
+/* RESULT */
+.result{
+    background:#e8f5e9;
+    padding:15px;
+    border-radius:8px;
+    color:#2e7d32;
+    font-size:14px;
+}
+
+/* FOOTER */
+footer{
+    margin-top:40px;
+    background:#1b5e20;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>🌱 Crop Adviser</h2>
+    <a href="index.html">⬅ Back to Home</a>
+</header>
+
+<div class="main">
+
+<div class="title">
+    <h1>Smart Crop Adviser</h1>
+    <p>Step-by-step AI-powered crop guidance</p>
+</div>
+
+<div class="box">
+
+    <!-- STEP INDICATOR -->
+    <div class="steps">
+        <div class="step active" id="s1">Step 1<br>Crop Image</div>
+        <div class="step" id="s2">Step 2<br>Crop Details</div>
+        <div class="step" id="s3">Step 3<br>Environment</div>
+        <div class="step" id="s4">Step 4<br>Advisory</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step-content active" id="step1">
+        <h3>Upload Crop Image</h3>
+        <p>Upload a clear image of the affected crop leaf.</p>
+        <input type="file">
+        <div class="buttons">
+            <span></span>
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-content" id="step2">
+        <h3>Enter Crop Details</h3>
+        <p>Select crop and growth stage.</p>
+        <select>
+            <option>Select Crop</option>
+            <option>Rice</option>
+            <option>Wheat</option>
+            <option>Cotton</option>
+        </select>
+        <select>
+            <option>Growth Stage</option>
+            <option>Seedling</option>
+            <option>Vegetative</option>
+            <option>Flowering</option>
+        </select>
+        <div class="buttons">
+            <button class="secondary" onclick="nextStep(1)">Back</button>
+            <button onclick="nextStep(3)">Next</button>
+        </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-content" id="step3">
+        <h3>Environmental Details</h3>
+        <p>Select soil type and season.</p>
+        <select>
+            <option>Soil Type</option>
+            <option>Black Soil</option>
+            <option>Red Soil</option>
+            <option>Alluvial Soil</option>
+        </select>
+        <select>
+            <option>Season</option>
+            <option>Kharif</option>
+            <option>Rabi</option>
+            <option>Zaid</option>
+        </select>
+        <div class="buttons">
+            <button class="secondary" onclick="nextStep(2)">Back</button>
+            <button onclick="nextStep(4)">Get Advisory</button>
+        </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-content" id="step4">
+        <h3>Crop Advisory Result</h3>
+        <p>Based on the provided inputs, the advisory is shown below.</p>
+        <div class="result">
+            ✔ Crop Disease: Leaf Blight<br>
+            ✔ Suggested Treatment: Copper-based fungicide<br>
+            ✔ Fertilizer Advice: Nitrogen-rich fertilizer<br>
+            ✔ Weather Tip: Avoid irrigation for 48 hours
+        </div>
+        <div class="buttons">
+            <button class="secondary" onclick="nextStep(3)">Back</button>
+            <button onclick="nextStep(1)">Start New Analysis</button>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+function nextStep(step){
+    document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+
+    document.getElementById('step'+step).classList.add('active');
+    document.getElementById('s'+step).classList.add('active');
+}
+</script>
+
+</body>
+</html>
