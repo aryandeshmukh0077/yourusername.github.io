@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Account | Smart Crop Advisory</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f2f6f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:white;
+    padding:35px;
+    width:380px;
+    border-radius:16px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+h2{
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🌱 Create Account</h2>
+
+    <input id="nameInput" placeholder="Full Name">
+    <input id="emailInput" type="email" placeholder="Email">
+    <input id="passwordInput" type="password" placeholder="Password">
+
+    <select id="roleInput">
+        <option value="">Select Role (Optional)</option>
+        <option>Farmer</option>
+        <option>Buyer</option>
+        <option>Farmer & Buyer</option>
+    </select>
+
+    <button id="createBtn">Create Account</button>
+</div>
+
+<script>
+document.getElementById("createBtn").addEventListener("click", function () {
+
+    const name = document.getElementById("nameInput").value.trim();
+    const email = document.getElementById("emailInput").value.trim();
+    const password = document.getElementById("passwordInput").value.trim();
+    const role = document.getElementById("roleInput").value;
+
+    if(!name || !email || !password){
+        alert("Please fill Name, Email and Password");
+        return;
+    }
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+    localStorage.setItem("userRole", role || "");
+
+    alert("Account created successfully. Please login.");
+
+    /* ✅ STRONG REDIRECT */
+    window.location.replace("index.html");
+});
+</script>
+
+</body>
+</html>

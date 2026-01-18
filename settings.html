@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Settings | Smart Crop Advisory</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f5;
+}
+
+header{
+    background:#1b5e20;
+    color:white;
+    padding:18px;
+    text-align:center;
+}
+
+.box{
+    max-width:420px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.logout{
+    background:#c62828;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>⚙️ Settings</h2>
+</header>
+
+<div class="box">
+    <input id="name" placeholder="Name">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="New Password">
+
+    <select id="role">
+        <option value="">Select Role</option>
+        <option>Farmer</option>
+        <option>Buyer</option>
+        <option>Farmer & Buyer</option>
+    </select>
+
+    <button onclick="save()">Save Changes</button>
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<script>
+if(sessionStorage.getItem("loggedIn") !== "true"){
+    location.href="index.html";
+}
+
+name.value = localStorage.getItem("userName") || "";
+email.value = localStorage.getItem("userEmail") || "";
+role.value = localStorage.getItem("userRole") || "";
+
+function save(){
+    localStorage.setItem("userName", name.value);
+    localStorage.setItem("userEmail", email.value);
+    localStorage.setItem("userRole", role.value);
+    if(password.value){
+        localStorage.setItem("userPassword", password.value);
+    }
+    alert("Settings saved");
+}
+
+function logout(){
+    sessionStorage.removeItem("loggedIn");
+    location.href="index.html";
+}
+</script>
+
+</body>
+</html>
